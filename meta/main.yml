@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: whiskerlabs.watchdog, watchdog_timeout: 15, watchdog_max_load_1: 24 }
