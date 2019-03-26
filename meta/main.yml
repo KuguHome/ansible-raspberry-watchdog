@@ -1,3 +1,18 @@
 ---
+galaxy_info:
+  role_name: raspberry-watchdog
+  description: Activates the hardware watchdog on a RaspberryPi
+  author: Hanno - Felix Wagner/friesenkiwi h.wagner@kugu-home.com
+  company: KUGU Home GmbH
+  license: BSD
+  galaxy_tags:
+  - raspberry
+  - raspberrypi
+  - watchdog
+  platforms:
+  - name: Raspbian
+    versions:
+    - all
+  min_ansible_version: 1.2
 dependencies:
   - { role: whiskerlabs.watchdog, watchdog_timeout: 15, watchdog_max_load_1: 24 }
