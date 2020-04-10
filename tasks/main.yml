@@ -3,11 +3,9 @@
     dest: /boot/config.txt
     line: "dtparam=watchdog=on"
     insertafter: "^#dtparam=spi=on"
-
-- name: Stop watchdog daemon
-  systemd:
-    name: watchdog.service
-    state: stopped
+  notify:
+  - Stop watchdog daemon
+  - Start watchdog daemon
 
 - name: copy systemd watchdog unit to make it modifiyable
   copy:
@@ -15,12 +13,20 @@
     src: /lib/systemd/system/watchdog.service
     dest: /etc/systemd/system/
     force: no
+  notify:
+  - Stop watchdog daemon
+  - Start watchdog daemon
 
 - name: Make watchdog daemon activatable
   lineinfile:
     path: /etc/systemd/system/watchdog.service
     insertafter: '[Install]'
     line: 'WantedBy=multi-user.target'
+  notify:
+  - Stop watchdog daemon
+  - Start watchdog daemon
+
+- meta: flush_handlers
 
 - name: Activate watchdog daemon
   systemd:

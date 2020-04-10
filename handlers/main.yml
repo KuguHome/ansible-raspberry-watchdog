@@ -1,0 +1,10 @@
+- name: Stop watchdog daemon
+  systemd:
+    name: watchdog.service
+    state: stopped
+
+- name: Start watchdog daemon
+  systemd:
+    name: watchdog.service
+    daemon_reload: yes
+    state: started
