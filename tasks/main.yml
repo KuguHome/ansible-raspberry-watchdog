@@ -7,7 +7,7 @@
   - Stop watchdog daemon
   - Start watchdog daemon
 
-- name: copy systemd watchdog unit to make it modifiyable
+- name: copy systemd watchdog unit to make it modifiable
   copy:
     remote_src: true
     src: /lib/systemd/system/watchdog.service
